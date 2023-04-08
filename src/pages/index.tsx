@@ -1,7 +1,4 @@
-import Head from "next/head";
-import Image from "next/image";
 import { Inter } from "next/font/google";
-import { useEffect } from "react";
 import axios from "axios";
 import Header from "@/components/header";
 import Body from "@/components/body";
@@ -24,7 +21,6 @@ export default function Home() {
 
   return (
     <>
-      <Header />
       <Body />
       <h1 className="text-3xl font-bold underline">Hello world!</h1>
       <button onClick={getStories}>Get Stories</button>
