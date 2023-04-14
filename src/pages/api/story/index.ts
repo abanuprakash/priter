@@ -9,20 +9,20 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
                 where: {
                     parentId: 0
                 },
-                include: {
-                    childParagraphs: true,
-                }
+                // include: {
+                //     childParagraphs: false,
+                // }
             });
 
-            for (const data of result) {
-                const childData = await prisma.pr_story_paragraph.findMany({
-                    where: {
-                        parentId: data.id
-                    }
-                });
+            // for (const data of result) {
+            //     const childData = await prisma.pr_story_paragraph.findMany({
+            //         where: {
+            //             parentId: data.id
+            //         }
+            //     });
                 
-                data.childParagraphs = childData;
-            }
+            //     data.childParagraphs = childData;
+            // }
 
             res.status(200).json(result);
             
