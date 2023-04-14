@@ -5,6 +5,7 @@ import BottomFixedMenu from "../footer/bottomFixedMenu";
 import LeftBar from "../sideBars/leftBar";
 import RightBar from "../sideBars/rightBar";
 import FeedsList from "../story/feedsList";
+import FullStory from "../story/fullStory";
 
 const Body = () => {
   const isTabletOrMobile = useMediaQuery(GlobalConstants.tabletAndMobileQuery);
@@ -37,6 +38,7 @@ const Body = () => {
           className={` ${isTabletOrMobile ? "col-span-1" : "col-span-6"}`}
         >
           <FeedsList />
+          {/* <FullStory /> */}
         </section>
 
         {!isTabletOrMobile && (
@@ -45,7 +47,7 @@ const Body = () => {
           </section>
         )}
       </main>
-      
+
       {isTabletOrMobile && <BottomFixedMenu />}
     </>
   );
