@@ -43,7 +43,28 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
             res.status(500).json({ message: "Something went wrong" })
         }
 
-    } else {
+    }
+    else if (req.method === 'PUT') {
+        console.log("mdskdkdk")
+        const query = req.query;
+        const { id } = query;
+console.log(req.body, 'body')
+        try {
+            const result = await prisma.pr_story_paragraph.update({
+                where: {
+                    id: +id!,
+                },
+                data: req.body
+            });
+
+            res.status(200).json(result);
+
+        } catch (error) {
+            console.log("error", error)
+            res.status(500).json({ message: "Something Went Wrong" });
+        }
+    }
+    else {
         res.status(405).json({ message: "Method not Allowed" });
     }
 
