@@ -34,10 +34,10 @@ const NewStoryButton = ({ isDefaultOpen, handleClose }: IProps) => {
     };
 
     await axios
-      .post(`http://localhost:3000/api/story/add`, newParagraph)
+      .post(`/api/story/add`, newParagraph)
       .then(async (response) => {
         const stories = await axios.get<Story[]>(
-          "http://localhost:3000/api/story"
+          "/api/story"
         );
 
         setStories(stories.data);

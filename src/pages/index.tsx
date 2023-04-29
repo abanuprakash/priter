@@ -28,7 +28,7 @@ export default function Home({ stories }: IProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const res = await axios.get("http://localhost:3000/api/story");
+  const res = await axios.get("/api/story");
 
   return {
     props: {

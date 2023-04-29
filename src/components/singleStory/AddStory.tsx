@@ -21,7 +21,7 @@ const AddStory = () => {
 
   const fetchAndSetLeftSideStories = (id: number) => {
     axios
-      .get(`http://localhost:3000/api/story/child?id=${id}`)
+      .get(`/api/story/child?id=${id}`)
       .then(async (response) => {
         await setLeftSideStories(response.data);
       });
@@ -39,7 +39,7 @@ const AddStory = () => {
     };
 
     await axios
-      .post(`http://localhost:3000/api/story/add`, newParagraph)
+      .post(`/api/story/add`, newParagraph)
       .then(async (response) => {
         await fetchAndSetLeftSideStories(response.data.parentId);
         setRightStories([]);

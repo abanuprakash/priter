@@ -25,13 +25,13 @@ const WholeStory = () => {
 
   const fetchAndSetRightSideStories = async (id: number) => {
     await axios
-      .get(`http://localhost:3000/api/story/child?id=${id}`)
+      .get(`/api/story/child?id=${id}`)
       .then((response) => setRightStories(response.data));
   };
 
   const fetchAndSetLeftSideStories = async (id: number) => {
     await axios
-      .get(`http://localhost:3000/api/story/child?id=${id}`)
+      .get(`/api/story/child?id=${id}`)
       .then((response) => setLeftSideStories(response.data));
   };
 

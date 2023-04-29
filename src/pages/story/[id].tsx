@@ -32,7 +32,7 @@ export default StoryDetailsPage;
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { id } = ctx.params!;
-  const response = await axios.get(`http://localhost:3000/api/story/${id}`);
+  const response = await axios.get(`/api/story/${id}`);
 
   return {
     props: {
