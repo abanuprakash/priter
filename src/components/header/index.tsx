@@ -5,7 +5,7 @@ import Logo from "../../../public/assets/images/logo.png";
 const Header = () => {
   return (
     <header
-      className={`bg-white w-full z-50 shadow-lg h-14 lg:h-16 fixed top-0`}
+      className={`bg-white w-full z-20 shadow-lg h-14 lg:h-16 fixed top-0`}
     >
       <section className={`flex w-100 items-center justify-between py-2 px-4 lg:px-24`}>
         <Image

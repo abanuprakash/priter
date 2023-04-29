@@ -4,6 +4,7 @@ export type Story = {
     parentId: number,
     likes: number,
     dislikes: number,
+    average: number,
     title: string,
     paragraph: string,
     status: number,
