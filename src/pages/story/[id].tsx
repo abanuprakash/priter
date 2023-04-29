@@ -10,14 +10,14 @@ interface IProps {
 }
 
 const StoryDetailsPage = ({ story }: IProps) => {
-  const { setCurrentStories, setRightStories } = useAppStoryContext();
+  const { setInitialCurrentStory, setRightStories } = useAppStoryContext();
 
   useEffect(() => {
     handleStories();
   }, [story]);
 
   const handleStories = async () => {
-    await setCurrentStories(story);
+    await setInitialCurrentStory(story);
     setRightStories(story.childParagraphs);
   };
 
