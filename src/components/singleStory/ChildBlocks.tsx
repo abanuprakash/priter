@@ -12,24 +12,33 @@ interface IStory {
 }
 
 const ChildBlocks = ({ childStories, isLeftStories }: IStory) => {
-  const { setCurrentStories, setLeftSideStories, setRightStories } =
-    useAppStoryContext();
+  const {
+    setCurrentStories,
+    setLeftSideStories,
+    setRightStories,
+    setShowRightSideBar,
+    setShowLeftSideBar,
+  } = useAppStoryContext();
 
   const handleRightNewStory = async (newStory: Story) => {
-    setCurrentStories(newStory);
-    setLeftSideStories(childStories);
+    setCurrentStories(newStory, false);
     fetchAndSetRightSideStories(newStory.id);
+    setLeftSideStories(childStories);
+    setShowRightSideBar(false);
   };
 
   const handleLeftChangeStory = (newStory: Story) => {
-    setCurrentStories(newStory);
+    setCurrentStories(newStory, true);
     fetchAndSetRightSideStories(newStory.id);
+    setShowLeftSideBar(false);
   };
 
   const fetchAndSetRightSideStories = (id: number) => {
     axios
       .get(`http://localhost:3000/api/story/child?id=${id}`)
-      .then((response) => setRightStories(response.data));
+      .then((response) => {
+        setRightStories(response.data);
+      });
   };
 
   return (
