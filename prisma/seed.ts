@@ -13,6 +13,7 @@ const initialSeedData: Prisma.pr_usersCreateInput[] = [
             create: <Prisma.pr_story_paragraphCreateInput[]>[
                 {
                     paragraph: "testing a new story to check if al working fine",
+                    title: "testing the new story",
                     crtBy: "admin",
                     updBy: "admin"
                 }
@@ -29,6 +30,7 @@ const initialSeedData: Prisma.pr_usersCreateInput[] = [
             create: <Prisma.pr_story_paragraphCreateInput[]>[
                 {
                     paragraph: "testing a new story to check if al working fine by guest",
+                    title: "testing the new story",
                     crtBy: "guest",
                     updBy: "guest"
                 }
