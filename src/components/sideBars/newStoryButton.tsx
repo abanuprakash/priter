@@ -34,10 +34,10 @@ const NewStoryButton = ({ isDefaultOpen, handleClose }: IProps) => {
     };
 
     await axios
-      .post(`/api/story/add`, newParagraph)
+      .post(`https://priter.vercel.app/api/story/add`, newParagraph)
       .then(async (response) => {
         const stories = await axios.get<Story[]>(
-          "/api/story"
+          "https://priter.vercel.app/api/story"
         );
 
         setStories(stories.data);

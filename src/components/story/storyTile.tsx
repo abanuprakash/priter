@@ -20,7 +20,7 @@ const StoryTile = ({ story }: IStory) => {
     );
     await axios
       .put<Story>(
-        `/api/story/${currentStory.id}`,
+        `https://priter.vercel.app/api/story/${currentStory.id}`,
         currentStory
       )
       .then((response) => setCurrentStory(response.data));

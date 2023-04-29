@@ -35,7 +35,7 @@ const ChildBlocks = ({ childStories, isLeftStories }: IStory) => {
 
   const fetchAndSetRightSideStories = (id: number) => {
     axios
-      .get(`/api/story/child?id=${id}`)
+      .get(`https://priter.vercel.app/api/story/child?id=${id}`)
       .then((response) => {
         setRightStories(response.data);
       });
