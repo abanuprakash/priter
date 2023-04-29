@@ -30,6 +30,10 @@ const StoryTile = ({ story }: IStory) => {
     <main className="rounded-md p-6 bg-white shadow-sm space-y-3 mb-4">
       <section className="flex flex-row items-start w-full">
         <section className="w-22 flex flex-col justify-center items-center mr-4 pt-1">
+          <span className="text-lightBlack text-xs mb-2">
+            {" "}
+            ( {story.likes} )
+          </span>
           <i
             className="feather icon-arrow-up mr-3 text-lg font-semibold pl-3 text-lightBlack hover:text-green cursor-pointer"
             onClick={() => handleVote(false)}
@@ -45,6 +49,9 @@ const StoryTile = ({ story }: IStory) => {
             className="feather icon-arrow-down mr-3 text-lg font-semibold pl-3 text-lightBlack hover:text-red cursor-pointer"
             onClick={() => handleVote(true)}
           ></i>
+          <span className="text-xs mt-2 text-lightBlack">
+            ( {story.dislikes} )
+          </span>
         </section>
         <section className="w-full">
           <Link href={`/story/${currentStory.id}`}>
