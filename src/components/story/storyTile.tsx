@@ -3,27 +3,56 @@ import Link from "next/link";
 import Avatar from "../../../public/assets/images/avatar.avif";
 import { Story } from "@/_types/story";
 import moment from "moment";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 interface IStory {
   story: Story;
 }
 
 const StoryTile = ({ story }: IStory) => {
+  const [currentStory, setCurrentStory] = useState(story);
+
+  const handleVote = async (isDown: boolean) => {
+    isDown ? ++currentStory.dislikes : ++currentStory.likes;
+    currentStory.average = Math.round(
+      currentStory.likes - currentStory.dislikes
+    );
+    await axios
+      .put<Story>(
+        `http://localhost:3000/api/story/${currentStory.id}`,
+        currentStory
+      )
+      .then((response) => setCurrentStory(response.data));
+  };
+
   return (
     <main className="rounded-md p-6 bg-white shadow-sm space-y-3 mb-4">
       <section className="flex flex-row items-start w-full">
         <section className="w-22 flex flex-col justify-center items-center mr-4 pt-1">
-          <i className="feather icon-arrow-up mr-3 text-lg font-semibold pl-3 text-lightBlack hover:text-green cursor-pointer"></i>
-          <span className="my-1">56</span>
-          <i className="feather icon-arrow-down mr-3 text-lg font-semibold pl-3 text-lightBlack hover:text-red cursor-pointer"></i>
+          <i
+            className="feather icon-arrow-up mr-3 text-lg font-semibold pl-3 text-lightBlack hover:text-green cursor-pointer"
+            onClick={() => handleVote(false)}
+          ></i>
+          <span
+            className={`my-1 ${
+              currentStory.average >= 0 ? "text-green" : "text-red"
+            } `}
+          >
+            {currentStory.average}
+          </span>
+          <i
+            className="feather icon-arrow-down mr-3 text-lg font-semibold pl-3 text-lightBlack hover:text-red cursor-pointer"
+            onClick={() => handleVote(true)}
+          ></i>
         </section>
         <section className="w-full">
-          <Link href={`/story/${story.id}`}>
-            <h2 className="text-black text-xl font-bold mb-2 cursor-pointer">
-              {story.title ?? "Story title will come"}
+          <Link href={`/story/${currentStory.id}`}>
+            <h2 className="text-black text-xl font-bold mb-2 cursor-pointer capitalize">
+              {currentStory.title ?? "Story title will come"}
             </h2>
             <p className="text-sm text-subBlack pb-1 line-clamp-3 lg:line-clamp-5">
-              {story.paragraph}
+              {currentStory.paragraph}
             </p>
           </Link>
           <div className="border-t pt-3 mt-3 border-lightGrey flex flex-row items-center justify-between">
@@ -55,10 +84,10 @@ const StoryTile = ({ story }: IStory) => {
               </div>
             </div>
 
-            <div className="text-subBlack flex flex-row items-end text-sm cursor-pointer hover:text-blue    ">
+            {/* <div className="text-subBlack flex flex-row items-end text-sm cursor-pointer hover:text-blue    ">
               <i className="feather icon-message-square text-base mr-1"></i>
               <span>10+</span>
-            </div>
+            </div> */}
           </div>
         </section>
       </section>

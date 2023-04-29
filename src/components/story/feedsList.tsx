@@ -9,11 +9,13 @@ const FeedsList = () => {
       <h3 className="w-full sticky top-0 bg-white p-2 mb-3 hidden">
         Top Stories
       </h3>
-      {storiesList.map((story) => (
-        <div key={story.id}>
-          <StoryTile story={story} />
-        </div>
-      ))}
+      {storiesList
+        .sort((a, b) => b.id - a.id)
+        .map((story) => (
+          <div key={story.id}>
+            <StoryTile story={story} />
+          </div>
+        ))}
     </main>
   );
 };
