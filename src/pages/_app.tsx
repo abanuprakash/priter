@@ -2,14 +2,18 @@ import Header from "@/components/header";
 import { StoryProvider } from "@/providers/StoryContext";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
+import { SessionProvider } from "next-auth/react"
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps: { session, ...pageProps },
+}: AppProps) {
   return (
     <>
-      <StoryProvider>
-        <Header />
-        <Component {...pageProps} />
-      </StoryProvider>
+      <SessionProvider session={session}>
+        <StoryProvider>
+          <Header />
+          <Component {...pageProps} />
+        </StoryProvider>
+      </SessionProvider>
     </>
   );
 }

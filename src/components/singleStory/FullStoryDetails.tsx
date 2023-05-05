@@ -37,7 +37,7 @@ const FullStoryDetails = () => {
           <ChildBlocks childStories={leftStoriesList} isLeftStories={true} />
         </MobileLeftBar>
       ) : (
-        <div className="col-span-2 bg-white">
+        <div className="col-span-2 bg-white rounded-md">
           <h2 className="p-2 pb-0 text-xl font-semibold">Other Stories</h2>
           <ChildBlocks childStories={leftStoriesList} isLeftStories={true} />
         </div>
@@ -55,7 +55,7 @@ const FullStoryDetails = () => {
         </MobileBar>
       ) : (
         <div className="col-span-2 bg-white relative">
-          <div className="flex flex-row items-center justify-between p-2">
+          <div className="flex flex-row items-center justify-between p-2 rounded-md">
             <h2 className="p-2 pb-0 text-xl font-semibold">Follow Ups</h2>
             <AddStory />
           </div>

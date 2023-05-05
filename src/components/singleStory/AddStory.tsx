@@ -19,6 +19,12 @@ const AddStory = () => {
     setNewStory(() => event.target.value);
   };
 
+  const handleCloseModal = () => {
+    setOpen(false);
+    setNewStory("");
+    setShowSideBar(false);
+  };
+
   const fetchAndSetLeftSideStories = (id: number) => {
     axios
       .get(`https://priter.vercel.app/api/story/child?id=${id}`)
@@ -44,9 +50,7 @@ const AddStory = () => {
         await fetchAndSetLeftSideStories(response.data.parentId);
         setRightStories([]);
         setCurrentStories(response.data, false);
-        setOpen(false);
-        setNewStory("");
-        setShowSideBar(false);
+        handleCloseModal();
       });
   };
 
@@ -63,7 +67,17 @@ const AddStory = () => {
 
       <Sheet isOpen={isOpen} onClose={() => setOpen(false)}>
         <Sheet.Container>
-          <Sheet.Header />
+          <Sheet.Header>
+          <div className="flex flex-row items-center justify-between p-3">
+              <h2 className="text-2xl font-medium mb-4 underline">
+                {/* Add New Story */}
+              </h2>
+              <i
+                className={`feather icon-x-circle mr-3 text-2xl pl-3 cursor-pointer `}
+                onClick={handleCloseModal}
+              ></i>
+            </div>
+          </Sheet.Header>
           <Sheet.Content>
             <div className="flex flex-col lg:flex-row items-start p-8">
               <div className="w-full lg:w-1/2 mb-4 lg:mb-0 lg:mr-4">
@@ -87,7 +101,7 @@ const AddStory = () => {
                 </h2>
                 <textarea
                   rows={5}
-                  className="border border-green rounded-md mb-4"
+                  className="border border-green rounded-md mb-4 p-3"
                   value={newStory}
                   onChange={handleNewStory}
                 ></textarea>

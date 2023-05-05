@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Avatar from "../../../public/assets/images/avatar.avif";
 import Logo from "../../../public/assets/images/logo.png";
+import LoginButton from "../Auth/LoginButton";
 
 const Header = () => {
   return (
@@ -13,6 +14,7 @@ const Header = () => {
           alt="logo"
           className="inline-block w-36 h-9 cursor-pointer"
         />
+        <LoginButton />
 
         <Image
           src={Avatar}

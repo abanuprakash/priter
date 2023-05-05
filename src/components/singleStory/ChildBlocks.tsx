@@ -46,9 +46,15 @@ const ChildBlocks = ({ childStories, isLeftStories }: IStory) => {
       {childStories.map((story) => (
         <div
           key={story.id}
-          className="line-clamp-2 border border-lightBg shadow-sm p-2 cursor-pointer group rounded-md mb-3 bg-lightBg relative"
+          className={`line-clamp-2 border border-lightBg shadow-sm p-2 cursor-pointer group rounded-md mb-3 ${
+            isLeftStories ? "bg-[#ffa50030] text-white" : "bg-lightBg"
+          } relative`}
         >
-          <p className="line-clamp-3 h-full text-black text-sm">
+          <p
+            className={`line-clamp-3 h-full  text-sm ${
+              isLeftStories ? " text-black" : "text-black"
+            }`}
+          >
             {story.paragraph}
           </p>
           <section className="flex flex-row items-center mt-4 justify-between">

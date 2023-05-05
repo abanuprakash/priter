@@ -63,19 +63,19 @@ const NewStoryButton = ({ isDefaultOpen, handleClose }: IProps) => {
                 Add New Story
               </h2>
               <i
-                className={`feather icon-x-circle mr-3 text-2xl pl-3 `}
+                className={`feather icon-x-circle mr-3 text-2xl pl-3 cursor-pointer`}
                 onClick={handleCloseModal}
               ></i>
             </div>
           </Sheet.Header>
           <Sheet.Content>
-            <div className="flex flex-col lg:flex-row items-start p-8">
+            <div className="flex flex-col lg:flex-row items-start w-full p-8">
               <div className="w-full lg:w-1/2 flex flex-col">
                 <div className=" mb-4">
                   <div>Title</div>
                   <input
                     type="text"
-                    className="border border-green rounded-md h-10 w-full"
+                    className="border border-green rounded-md h-10 px-3 w-full"
                     onChange={(event) => setTitle(() => event.target.value)}
                   />
                 </div>
@@ -84,7 +84,7 @@ const NewStoryButton = ({ isDefaultOpen, handleClose }: IProps) => {
                   <div>Story</div>
                   <textarea
                     rows={5}
-                    className="border border-green rounded-md mb-4 w-full"
+                    className="border border-green rounded-md mb-4 p-3 w-full"
                     value={newStory}
                     onChange={(event) => setNewStory(() => event.target.value)}
                   ></textarea>

@@ -40,7 +40,7 @@ const WholeStory = () => {
       <h1 className="text-5xl font-bold mb-6 capitalize">{currentStory[0]?.title}</h1>
       <main className="bg-lightBg p-4">
         {currentStory.map((story, index) => (
-          <div key={story.id} className="flex flex-row items-center">
+          <div key={story.id} className="flex flex-row items-center last:text-[#ffa500]">
             <p className="mb-3">{story.paragraph}</p>
 
             <i
