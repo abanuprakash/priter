@@ -2,7 +2,7 @@ import Image from "next/image";
 import Avatar from "../../../public/assets/images/avatar.avif";
 import Logo from "../../../public/assets/images/logo.png";
 import LoginButton from "../Auth/LoginButton";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useMediaQuery } from "react-responsive";
 import { GlobalConstants } from "@/_const/globalConstants";
 import { useEffect, useState } from "react";
@@ -41,10 +41,14 @@ const Header = () => {
                 className={`inline-block rounded-full ring-2 ring-green justify-end mr-3 lg:mr-0 cursor-pointer}`}
               />
             </div>
-            {isClient && isTabletOrMobile
-              ? <p className="ml-2  text-ellipsis overflow-hidden w-[100px] line-clamp-1">{`Hi, ${session.user?.name?.split(" ")[0] ?? ''}`}</p>
-              : <p className="ml-2 text-ellipsis overflow-hidden w-[130px] line-clamp-1">{`Hi, ${session.user?.name ?? ''}`}</p>
-            }
+            <div className="ml-2">
+              {isClient && isTabletOrMobile
+                ? <p className="ml-2  text-ellipsis overflow-hidden w-[100px] line-clamp-1">{`Hi, ${session.user?.name?.split(" ")[0] ?? ''}`}</p>
+                : <p className="ml-2 text-ellipsis overflow-hidden w-[130px] line-clamp-1">{`Hi, ${session.user?.name ?? ''}`}</p>
+              }
+              <button className="ml-2 text-red" onClick={() => signOut()}>Sign out</button>
+            </div>
+
           </div>
           : <LoginButton />
         }
