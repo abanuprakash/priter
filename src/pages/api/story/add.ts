@@ -7,7 +7,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
         console.log(req.body)
 
         try {
-            const result = await prisma.pr_story_paragraph.create({ data: req.body });
+            const result = await prisma.story.create({ data: req.body });
 
             res.status(200).json(result);
 

@@ -5,9 +5,9 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
     if (req.method === 'GET') {
 
         try {
-            const result = await prisma.pr_users.findMany({
+            const result = await prisma.user.findMany({
                 include: {
-                    paragraph: true
+                    story: true
                 }
             });
             

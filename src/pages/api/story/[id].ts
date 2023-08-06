@@ -12,7 +12,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
         }
 
         try {
-            const response = await prisma.pr_story_paragraph.findUnique({
+            const response = await prisma.story.findUnique({
                 where: {
                     id: +id!,
                 },
@@ -26,7 +26,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
             }
 
             if (response) {
-                const childData = await prisma.pr_story_paragraph.findMany({
+                const childData = await prisma.story.findMany({
                     where: {
                         parentId: response.id
                     }
@@ -49,7 +49,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
         const { id } = query;
 
         try {
-            const result = await prisma.pr_story_paragraph.update({
+            const result = await prisma.story.update({
                 where: {
                     id: +id!,
                 },

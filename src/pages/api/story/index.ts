@@ -5,7 +5,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
     if (req.method === 'GET') {
 
         try {
-            const result = await prisma.pr_story_paragraph.findMany({
+            const result = await prisma.story.findMany({
                 where: {
                     parentId: 0
                 },
