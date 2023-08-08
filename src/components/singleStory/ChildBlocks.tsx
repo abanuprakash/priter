@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import Avatar from "../../../public/assets/images/avatar.avif";
 import { Story } from "@/_types/story";
 import { useAppStoryContext } from "@/providers/StoryContext";
 import moment from "moment";
 import axios from "axios";
+import UserAvatar from "./userAvatar";
 
 interface IStory {
   childStories: Story[];
@@ -46,24 +46,18 @@ const ChildBlocks = ({ childStories, isLeftStories }: IStory) => {
       {childStories.map((story) => (
         <div
           key={story.id}
-          className={`line-clamp-2 border border-lightBg shadow-sm p-2 cursor-pointer group rounded-md mb-3 ${
-            isLeftStories ? "bg-[#ffa50030] text-white" : "bg-lightBg"
-          } relative`}
+          className={`line-clamp-2 border border-lightBg shadow-sm p-2 cursor-pointer group rounded-md mb-3 ${isLeftStories ? "bg-[#ffa50030] text-white" : "bg-lightBg"
+            } relative`}
         >
           <p
-            className={`line-clamp-3 h-full  text-sm ${
-              isLeftStories ? " text-black" : "text-black"
-            }`}
+            className={`line-clamp-3 h-full  text-sm ${isLeftStories ? " text-black" : "text-black"
+              }`}
           >
             {story.paragraph}
           </p>
           <section className="flex flex-row items-center mt-4 justify-between">
             <div className="flex flex-row items-center">
-              <Image
-                src={Avatar}
-                alt="avatar"
-                className="inline-block h-4 w-4 rounded-full ring-2 ring-green justify-end cursor-pointer"
-              />
+              <UserAvatar userImage={story.userImage} />
               <div className="text-subBlack text-xs pl-3">
                 <Link href={"#"} className="text-blue cursor-pointer">
                   <span className="capitalize -ml-[3px]"> {story.crtBy}</span>

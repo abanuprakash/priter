@@ -27,10 +27,7 @@ const NewStoryButton = ({ isDefaultOpen, handleClose }: IProps) => {
     const newParagraph = {
       paragraph: newStory,
       title: title,
-      crtBy: "admin",
-      updBy: "admin",
       parentId: 0,
-      userId: 1,
     };
 
     await axios

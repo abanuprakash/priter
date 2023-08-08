@@ -1,10 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
-import Avatar from "../../../public/assets/images/avatar.avif";
 import { Story } from "@/_types/story";
 import moment from "moment";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
+import UserAvatar from "../singleStory/userAvatar";
 
 interface IStory {
   story: Story;
@@ -20,7 +19,7 @@ const StoryTile = ({ story }: IStory) => {
     );
     await axios
       .put<Story>(
-        `https://priter.vercel.app/api/story/${currentStory.id}`,
+        `http://localhost:3000/api/story/${currentStory.id}`,
         currentStory
       )
       .then((response) => setCurrentStory(response.data));
@@ -39,9 +38,8 @@ const StoryTile = ({ story }: IStory) => {
             onClick={() => handleVote(false)}
           ></i>
           <span
-            className={`my-1 ${
-              currentStory.average >= 0 ? "text-green" : "text-red"
-            } `}
+            className={`my-1 ${currentStory.average >= 0 ? "text-green" : "text-red"
+              } `}
           >
             {currentStory.average}
           </span>
@@ -64,11 +62,7 @@ const StoryTile = ({ story }: IStory) => {
           </Link>
           <div className="border-t pt-3 mt-3 border-lightGrey flex flex-row items-center justify-between">
             <div className="flex flex-row items-center">
-              <Image
-                src={Avatar}
-                alt="avatar"
-                className="inline-block h-4 w-4 rounded-full ring-2 ring-green justify-end cursor-pointer"
-              />
+              <UserAvatar userImage={currentStory.userImage} />
               <div className="text-subBlack text-xs flex flex-col lg:flex-row justify-start items-start lg:items-center">
                 <div>
                   <span className="ml-2 mr-1">Posted by</span>

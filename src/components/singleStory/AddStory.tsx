@@ -38,10 +38,7 @@ const AddStory = () => {
 
     const newParagraph = {
       paragraph: newStory,
-      crtBy: "admin",
-      updBy: "admin",
-      parentId: lastChild?.id ?? 1,
-      userId: 1,
+      parentId: lastChild?.id ?? 1
     };
 
     await axios
@@ -68,7 +65,7 @@ const AddStory = () => {
       <Sheet isOpen={isOpen} onClose={() => setOpen(false)}>
         <Sheet.Container>
           <Sheet.Header>
-          <div className="flex flex-row items-center justify-between p-3">
+            <div className="flex flex-row items-center justify-between p-3">
               <h2 className="text-2xl font-medium mb-4 underline">
                 {/* Add New Story */}
               </h2>

@@ -1,6 +1,7 @@
 export type Story = {
     id: number,
-    userId: number,
+    userId: string,
+    userImage: string,
     parentId: number,
     likes: number,
     dislikes: number,
