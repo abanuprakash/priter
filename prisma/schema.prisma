@@ -8,27 +8,25 @@ datasource db {
 }
 
 model Story {
-  id                   Int                  @id @default(autoincrement())
-  userId               String                 
-  parentId             Int                  @default(0) @map("parent_id")
-  likes                Int                  @default(0)
-  dislikes             Int                  @default(0)
-  average             Int                  @default(0)
-  paragraph            String               @db.VarChar(500)
-  title                String?              @db.VarChar(50)
-  status               Int                  @default(1)
-  ts                   DateTime             @default(now())
-  crtAt                DateTime             @default(now()) @map("crt_at")
-  crtBy                String               @map("crt_by") @db.VarChar(25)
-  updAt                DateTime             @updatedAt @map("upd_at")
-  updBy                String               @map("upd_by") @db.VarChar(25)
-  user                 User     @relation(fields: [userId], references: [id])
-  childParagraph       Story?  @relation("ChildParas", fields: [story_paragraphId], references: [id])
+  id                Int      @id @default(autoincrement())
+  userId            String
+  userImage         String
+  parentId          Int      @default(0) @map("parent_id")
+  likes             Int      @default(0)
+  dislikes          Int      @default(0)
+  average           Int      @default(0)
+  paragraph         String   @db.VarChar(500)
+  title             String?  @db.VarChar(50)
+  status            Int      @default(1)
+  ts                DateTime @default(now())
+  crtAt             DateTime @default(now()) @map("crt_at")
+  crtBy             String   @map("crt_by") @db.VarChar(25)
+  updAt             DateTime @updatedAt @map("upd_at")
+  updBy             String   @map("upd_by") @db.VarChar(25)
+  user              User     @relation(fields: [userId], references: [id])
+  childParagraph    Story?   @relation("ChildParas", fields: [story_paragraphId], references: [id])
   story_paragraphId Int?
-  childParagraphs      Story[] @relation("ChildParas")
-
-  @@index([userId], map: "user_id")
-	@@map("Story")
+  childParagraphs   Story[]  @relation("ChildParas")
 }
 
 // model pr_users {
@@ -51,18 +49,18 @@ model Story {
 // }
 
 model Account {
-  id                 String  @id @default(cuid())
-  userId             String
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String?  @db.Text
-  access_token       String?  @db.Text
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String?  @db.Text
-  session_state      String?
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -86,6 +84,8 @@ model User {
   accounts      Account[]
   sessions      Session[]
   story         Story[]
+
+  @@unique([id, image])
 }
 
 model VerificationToken {
