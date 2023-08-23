@@ -1,6 +1,7 @@
 import { Story } from "@/_types/story";
 import { useAppStoryContext } from "@/providers/StoryContext";
 import axios from "axios";
+import PreviewStory from "./PreviewStory";
 
 const WholeStory = () => {
   const {
@@ -37,10 +38,14 @@ const WholeStory = () => {
 
   return (
     <article className="p-4">
-      <h1 className="text-5xl font-bold mb-6 capitalize">{currentStory[0]?.title}</h1>
+      <div className="flex flex-row items-center  mb-6 justify-between">
+        <h1 className="text-5xl font-bold capitalize">{currentStory[0]?.title}</h1>
+        <PreviewStory />
+      </div>
+
       <main className="bg-lightBg p-4">
         {currentStory.map((story, index) => (
-          <div key={story.id} className="flex flex-row items-center last:text-[#ffa500]">
+          <div key={story.id} className="flex flex-row items-center last:text-[#ffa500]" title={story.crtBy}>
             <p className="mb-3">{story.paragraph}</p>
 
             <i
