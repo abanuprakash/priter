@@ -5,6 +5,7 @@ const nextConfig = {
     domains: [
       "lh3.googleusercontent.com"
     ],
+    optimizeFonts: false,
   },
 }
 
