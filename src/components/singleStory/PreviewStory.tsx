@@ -15,11 +15,12 @@ const PreviewStory = () => {
         <>
             <button
                 onClick={() => setOpen(true)}
-                className="bg-green text-white w-12 h-12 rounded-full flex flex-col justify-center items-center"
-                title="Read Full Story"
+                className="bg-green text-white w-10 h-10 rounded-full flex flex-col justify-center items-center"
+                
             >
                 <i
                     className={`icon-file-text feather text-2xl font-bold cursor-pointer `}
+                    title="Read Full Story"
                 ></i>
                 {/* <span className="text-xs">Read</span> */}
             </button>
