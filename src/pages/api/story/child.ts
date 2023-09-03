@@ -14,25 +14,27 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
                         parentId: +id,
                     },
                     include: {
-                        childParagraphs: true
+                        _count: {
+                            select: { childParagraphs: true },
+                        }
                     }
                 });
                 if (response) {
                     console.log(response, 'response')
-                 const data: any[] = [];
-                 await response.map(async res => {
+                    const data: any[] = [];
+                    await response.map(async res => {
                         const childData = await prisma.story.findMany({
                             where: {
                                 parentId: res.id
                             }
                         });
-                        
+
                         console.log(childData, 'chil')
-                        res.childParagraphs = childData;
+                        // res.childParagraphs = childData;
                         data.push(res)
                     })
-                     console.log(data, 'data')
-                    res.status(200).json(data);
+                    console.log(data, 'data')
+                    res.status(200).json(response);
                 } else {
                     res.status(417).json({ message: `No stroy for id #${id}` })
                 }
