@@ -10,7 +10,6 @@ interface IProps {
 }
 
 const StoryDetailsPage = ({ story }: IProps) => {
-  console.log(story)
   const { setInitialCurrentStory, setCurrentStoriesAsArray, setRightStories, setLeftSideStories } = useAppStoryContext();
 
   useEffect(() => {
@@ -23,7 +22,6 @@ const StoryDetailsPage = ({ story }: IProps) => {
       newStory.push(story);
       await story.childParagraphs.forEach(story => newStory.push(story));
       setCurrentStoriesAsArray(newStory);
-      console.log(newStory, 'new')
     } else {
       await setInitialCurrentStory(story);
     }

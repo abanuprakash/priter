@@ -2,6 +2,8 @@ import Sheet from "react-modal-sheet";
 import { useState } from "react";
 import { useAppStoryContext } from "@/providers/StoryContext";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddStory = () => {
   const [isOpen, setOpen] = useState(false);
@@ -39,7 +41,8 @@ const AddStory = () => {
     const isFirstCase = currentStory[0]?.id === 2 ? true : false;
     const newParagraph = {
       paragraph: newStory,
-      parentId: isFirstCase ? 2 : lastChild?.id ?? 1
+      parentId: isFirstCase ? 2 : lastChild?.id ?? 1,
+      lastAuthor: lastChild?.crtBy,
     };
 
     await axios
@@ -49,6 +52,8 @@ const AddStory = () => {
         setRightStories([]);
         setCurrentStories(response.data, false);
         handleCloseModal();
+      }).catch(error => {
+        toast(error);
       });
   };
 
@@ -111,6 +116,8 @@ const AddStory = () => {
                 </button>
               </div>
             </div>
+            <ToastContainer />
+
           </Sheet.Content>
         </Sheet.Container>
 
