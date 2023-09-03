@@ -17,7 +17,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
                     }
                 });
                 if (response) {
-                    console.log()
+                    console.log(response, 'response')
                    await response.forEach(async res => {
                         const childData = await prisma.story.findMany({
                             where: {

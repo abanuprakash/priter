@@ -39,7 +39,7 @@ const WholeStory = () => {
   return (
     <article className="p-4">
       <div className="flex flex-row items-center  mb-6 justify-between">
-        <h1 className="text-5xl font-bold capitalize">{currentStory[0]?.title}</h1>
+        <h1 className="text-2xl lg:text-5xl font-bold capitalize">{currentStory[0]?.title}</h1>
         <PreviewStory />
 
         {(currentStory[0]?.id === 2 && currentStory.length <= 24) && <AddStory />}
