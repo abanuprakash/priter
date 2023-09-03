@@ -32,6 +32,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
         if (req.body.lastAuthor === req.body.crtBy) {
             res.status(417).json({ message: "ooh hoo Sorry! You can't put consecutive entries" })
         }
+        delete req.body["lastAuthor"];
         console.log(req.body)
         try {
             const result = await prisma.story.create({ data: req.body });
