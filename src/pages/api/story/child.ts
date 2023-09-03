@@ -17,16 +17,18 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
                     }
                 });
                 if (response) {
-                    console.log('first')
+                    console.log()
                    await response.forEach(async res => {
                         const childData = await prisma.story.findMany({
                             where: {
                                 parentId: res.id
                             }
                         });
-
+                        
+                        console.log(childData, 'chil')
                         res.childParagraphs = childData;
                     })
+                     console.log(response)
                     res.status(200).json(response);
                 } else {
                     res.status(417).json({ message: `No stroy for id #${id}` })
