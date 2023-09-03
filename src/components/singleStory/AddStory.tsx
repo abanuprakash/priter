@@ -55,6 +55,7 @@ const AddStory = () => {
         handleCloseModal();
       }).catch(error => {
         console.log(error)
+        setError(error?.response?.data?.message)
       });
   };
 

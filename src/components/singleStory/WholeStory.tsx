@@ -42,7 +42,7 @@ const WholeStory = () => {
         <h1 className="text-5xl font-bold capitalize">{currentStory[0]?.title}</h1>
         <PreviewStory />
 
-        {currentStory[0]?.id === 2 && <AddStory />}
+        {(currentStory[0]?.id === 2 && currentStory.length <= 24) && <AddStory />}
       </div>
 
       <main className="bg-lightBg p-4">
