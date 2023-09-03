@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const AddStory = () => {
   const [isOpen, setOpen] = useState(false);
   const [newStory, setNewStory] = useState("");
+  const [error, setError] = useState("");
 
   const {
     currentStory,
@@ -53,7 +54,7 @@ const AddStory = () => {
         setCurrentStories(response.data, false);
         handleCloseModal();
       }).catch(error => {
-        toast(error);
+        console.log(error)
       });
   };
 
@@ -108,6 +109,9 @@ const AddStory = () => {
                   value={newStory}
                   onChange={handleNewStory}
                 ></textarea>
+                {error &&
+                <div className="text-red">{error}</div>
+                }
                 <button
                   className="bg-green p-2 text-center text-white rounded-md cursor-pointer"
                   onClick={addNewStory}
@@ -116,7 +120,6 @@ const AddStory = () => {
                 </button>
               </div>
             </div>
-            <ToastContainer />
 
           </Sheet.Content>
         </Sheet.Container>
