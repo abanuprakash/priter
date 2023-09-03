@@ -1,3 +1,4 @@
+import { Story } from "@/_types/story";
 import prisma from "@/lib/prisma";
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -18,7 +19,8 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
                 });
                 if (response) {
                     console.log(response, 'response')
-                 const data = await response.map(async res => {
+                 const data: any[] = [];
+                 await response.map(async res => {
                         const childData = await prisma.story.findMany({
                             where: {
                                 parentId: res.id
@@ -27,6 +29,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
                         
                         console.log(childData, 'chil')
                         res.childParagraphs = childData;
+                        data.push(res)
                     })
                      console.log(data, 'data')
                     res.status(200).json(data);
