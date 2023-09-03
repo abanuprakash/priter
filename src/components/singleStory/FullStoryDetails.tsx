@@ -32,37 +32,47 @@ const FullStoryDetails = () => {
 
   return (
     <main className="grid grid-cols-12 gap-3 px-3 lg:px-0 min-h-screen h-screen overflow-hidden container mx-auto">
-      {isClient && isTabletOrMobile ? (
-        <MobileLeftBar>
-          <ChildBlocks childStories={leftStoriesList} isLeftStories={true} />
-        </MobileLeftBar>
-      ) : (
-        <div className="col-span-2 bg-white rounded-md">
-          <h2 className="p-2 pb-0 text-xl font-semibold">Other Stories</h2>
-          <ChildBlocks childStories={leftStoriesList} isLeftStories={true} />
-        </div>
-      )}
+      {currentStory[0]?.id !== 2 &&
+        <>
+          {isClient && isTabletOrMobile ? (
+            <MobileLeftBar>
+              <ChildBlocks childStories={leftStoriesList} isLeftStories={true} />
+            </MobileLeftBar>
+          ) : (
+            <div className="col-span-2 bg-white rounded-md">
+              <h2 className="p-2 pb-0 text-xl font-semibold">Other Stories</h2>
+              <ChildBlocks childStories={leftStoriesList} isLeftStories={true} />
+            </div>
+          )}
+        </>
+      }
       <div className="col-span-12 lg:col-span-8 min-h-screen h-screen bg-white">
         <WholeStory />
       </div>
-      {isClient && isTabletOrMobile ? (
-        <MobileBar>
-          <div className="flex flex-row items-center justify-between p-2">
-            <h2 className="p-2 pb-0 text-xl font-semibold">Follow Ups</h2>
-            <AddStory />
-          </div>
-          <ChildBlocks childStories={rightSideList} isLeftStories={false} />
-        </MobileBar>
-      ) : (
-        <div className="col-span-2 bg-white relative">
-          <div className="flex flex-row items-center justify-between p-2 rounded-md">
-            <h2 className="p-2 pb-0 text-xl font-semibold">Follow Ups</h2>
-            <AddStory />
-          </div>
-          <ChildBlocks childStories={rightSideList} isLeftStories={false} />
-        </div>
-      )}
-    </main>
+      {currentStory[0]?.id !== 2 &&
+        <>
+          {
+            isClient && isTabletOrMobile ? (
+              <MobileBar>
+                <div className="flex flex-row items-center justify-between p-2">
+                  <h2 className="p-2 pb-0 text-xl font-semibold">Follow Ups</h2>
+                  <AddStory />
+                </div>
+                <ChildBlocks childStories={rightSideList} isLeftStories={false} />
+              </MobileBar>
+            ) : (
+              <div className="col-span-2 bg-white relative">
+                <div className="flex flex-row items-center justify-between p-2 rounded-md">
+                  <h2 className="p-2 pb-0 text-xl font-semibold">Follow Ups</h2>
+                  <AddStory />
+                </div>
+                <ChildBlocks childStories={rightSideList} isLeftStories={false} />
+              </div>
+            )
+          }
+        </>
+      }
+    </main >
   );
 };
 

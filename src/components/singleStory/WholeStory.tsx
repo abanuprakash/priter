@@ -2,6 +2,7 @@ import { Story } from "@/_types/story";
 import { useAppStoryContext } from "@/providers/StoryContext";
 import axios from "axios";
 import PreviewStory from "./PreviewStory";
+import AddStory from "./AddStory";
 
 const WholeStory = () => {
   const {
@@ -41,6 +42,8 @@ const WholeStory = () => {
       <div className="flex flex-row items-center  mb-6 justify-between">
         <h1 className="text-5xl font-bold capitalize">{currentStory[0]?.title}</h1>
         <PreviewStory />
+        
+        {currentStory[0]?.id === 2 && <AddStory />}
       </div>
 
       <main className="bg-lightBg p-4">
