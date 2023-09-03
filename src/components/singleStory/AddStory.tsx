@@ -36,9 +36,10 @@ const AddStory = () => {
   const addNewStory = async () => {
     const lastChild = currentStory.at(-1);
 
+    const isFirstCase = currentStory[0]?.id === 2 ? true : false;
     const newParagraph = {
       paragraph: newStory,
-      parentId: lastChild?.id ?? 1
+      parentId: isFirstCase ? 2 : lastChild?.id ?? 1
     };
 
     await axios

@@ -14,7 +14,7 @@ const WholeStory = () => {
 
   const handleStoryFetch = async (story: Story, index: number) => {
     const filteredStory = currentStory.slice(0, ++index);
-
+    console.log(currentStory, 'current')
     await fetchAndSetRightSideStories(story.id);
     if (story.parentId === 0) {
       setLeftSideStories([]);
