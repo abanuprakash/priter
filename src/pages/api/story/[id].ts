@@ -31,7 +31,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
                         parentId: response.id
                     }
                 });
-
+                console.log(childData, 'childData in main')
                 response.childParagraphs = childData;
                 res.status(200).json(response);
             } else {

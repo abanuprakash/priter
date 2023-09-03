@@ -44,7 +44,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
                 res.status(417).json(error)
             }
         } else {
-            res.status(417).json({ message: "Invalid id" })
+            res.status(417).json({ message: "Invalid id" });
         }
 
 
