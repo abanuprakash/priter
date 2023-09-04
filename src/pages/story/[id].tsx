@@ -53,9 +53,8 @@ const StoryDetailsPage = ({ story }: IProps) => {
       setCurrentStoriesAsArray(newStory);
     } else {
       await setInitialCurrentStory(story);
+      await getChildStories(story.childParagraphs);
     }
-
-    await getChildStories(story.childParagraphs);
   };
 
   return (

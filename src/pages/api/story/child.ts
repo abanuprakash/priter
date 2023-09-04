@@ -15,9 +15,6 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse):
             }).then(resp => {
                 res.childParagraphs = resp;
             });
-
-
-            // data.push(res)
         })
     }
 
