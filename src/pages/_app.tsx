@@ -13,7 +13,7 @@ export default function App({ Component, pageProps: { session, ...pageProps },
         <StoryProvider>
           <Header />
           <Component {...pageProps} />
-          <Analytics />
+                <Analytics />
         </StoryProvider>
       </SessionProvider>
     </>
