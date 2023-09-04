@@ -2,7 +2,6 @@ import Sheet from "react-modal-sheet";
 import { useState } from "react";
 import { useAppStoryContext } from "@/providers/StoryContext";
 import axios from "axios";
-import 'react-toastify/dist/ReactToastify.css';
 import { Story } from "@/_types/story";
 
 const AddStory = () => {
