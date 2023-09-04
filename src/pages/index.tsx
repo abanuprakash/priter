@@ -28,7 +28,8 @@ export default function Home({ stories }: IProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const res = await axios.get("https://priter.vercel.app/api/story");
+  const res = await axios.get("http://localhost:3000/api/story");
+  // const res = await axios.get("https://priter.vercel.app/api/story");
 
   return {
     props: {

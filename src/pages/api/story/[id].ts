@@ -18,6 +18,9 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
                 },
                 include: {
                     childParagraphs: true,
+                    // _count: {
+                    //     select: { childParagraphs: true },
+                    // }
                 }
             });
 
@@ -31,7 +34,6 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
                         parentId: response.id
                     }
                 });
-                console.log(childData, 'childData in main')
                 response.childParagraphs = childData;
                 res.status(200).json(response);
             } else {
@@ -59,7 +61,6 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
             res.status(200).json(result);
 
         } catch (error) {
-            console.log("error", error)
             res.status(500).json({ message: "Something Went Wrong" });
         }
     }

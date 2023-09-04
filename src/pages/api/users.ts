@@ -14,7 +14,6 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
             res.status(200).json(result);
 
         } catch (error) {
-            console.log("error", error)
             res.status(500).json({ message: "Something Went Wrong" });
         }
 

@@ -2,7 +2,25 @@ import { Story } from "@/_types/story";
 import prisma from "@/lib/prisma";
 import { NextApiRequest, NextApiResponse } from "next";
 
-export default async function handle(req: NextApiRequest, res: NextApiResponse) {
+export default async function handle(req: NextApiRequest, res: NextApiResponse): Promise<any> {
+    const handleChildData = (response: any[]) => {
+        return response.map(res => {
+            prisma.story.findMany({
+                where: {
+                    parentId: res.id
+                },
+                include: {
+                    childParagraphs: true
+                }
+            }).then(resp => {
+                res.childParagraphs = resp;
+            });
+
+
+            // data.push(res)
+        })
+    }
+
     if (req.method === 'GET') {
         const query = req.query;
         const { id } = query;
@@ -14,32 +32,14 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
                         parentId: +id,
                     },
                     include: {
+                        // childParagraphs: true,
                         _count: {
                             select: { childParagraphs: true },
                         }
                     }
-                });
-                if (response) {
-                    console.log(response, 'response')
-                    const data: any[] = [];
-                    await response.map(async res => {
-                        const childData = await prisma.story.findMany({
-                            where: {
-                                parentId: res.id
-                            }
-                        });
-
-                        console.log(childData, 'chil')
-                        // res.childParagraphs = childData;
-                        data.push(res)
-                    })
-                    console.log(data, 'data')
-                    res.status(200).json(response);
-                } else {
-                    res.status(417).json({ message: `No stroy for id #${id}` })
-                }
-
-                // res.status(200).json(response);
+                }).then(response => {
+                    res.status(200).send(response);
+                }).catch(error => res.status(417).json({ message: `No stroy for id #${id}` }));
             } catch (error) {
                 res.status(417).json(error)
             }

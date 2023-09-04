@@ -4,6 +4,7 @@ import { useAppStoryContext } from "@/providers/StoryContext";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Story } from "@/_types/story";
 
 const AddStory = () => {
   const [isOpen, setOpen] = useState(false);
@@ -29,11 +30,24 @@ const AddStory = () => {
   };
 
   const fetchAndSetLeftSideStories = (id: number) => {
+    let childParagraphs: Story[] = [];
     axios
-      .get(`https://priter.vercel.app/api/story/child?id=${id}`)
-      .then(async (response) => {
-        await setLeftSideStories(response.data);
-      });
+      // .get(`https://priter.vercel.app/api/story/child?id=${id}`)
+      .get(`http://localhost:3000/api/story/child?id=${id}`)
+      .then((response) => {
+        childParagraphs = response.data.map((child: { crtAt: string | number | Date; _count: { childParagraphs: number; }; }) => {
+          const oneDay = 60 * 60 * 24 * 1000;
+          const currentTime = Date.now();
+          const dataTime = +new Date(child.crtAt);
+          if (child._count.childParagraphs > 0) {
+            return child;
+          } else {
+            if ((currentTime - dataTime) < oneDay) {
+              return child;
+            }
+          }
+        })      
+      }).finally(async () =>  await setLeftSideStories(childParagraphs.filter(story => story !== undefined)));
   };
 
   const addNewStory = async () => {
@@ -43,18 +57,19 @@ const AddStory = () => {
     const newParagraph = {
       paragraph: newStory,
       parentId: isFirstCase ? 2 : lastChild?.id ?? 1,
+      story_paragraphId: isFirstCase ? 2 : lastChild?.id ?? 1,
       lastAuthor: lastChild?.crtBy,
     };
 
     await axios
-      .post(`https://priter.vercel.app/api/story/add`, newParagraph)
+      // .post(`https://priter.vercel.app/api/story/add`, newParagraph)
+      .post(`http://localhost:3000/api/story/add`, newParagraph)
       .then(async (response) => {
         await fetchAndSetLeftSideStories(response.data.parentId);
         setRightStories([]);
         setCurrentStories(response.data, false);
         handleCloseModal();
       }).catch(error => {
-        console.log(error)
         setError(error?.response?.data?.message)
       });
   };

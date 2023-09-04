@@ -8,8 +8,6 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
     const session = await getServerSession(req, res, authOptions)
 
     if (req.method === 'POST') {
-        console.log(req.body)
-        console.log(session?.user?.email);
 
         if (session?.user?.email) {
             const user = await prisma.user.findUnique({
@@ -29,18 +27,17 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
             req.body.userImage = '';
         }
         
-        if (req.body.lastAuthor === req.body.crtBy) {
+        if (req.body.lastAuthor === req.body.crtBy && req.body.parentId === 2) {
             res.status(417).json({ message: "ooh hoo Sorry! You can't put consecutive entries" })
         }
         delete req.body["lastAuthor"];
-        console.log(req.body)
+        
         try {
             const result = await prisma.story.create({ data: req.body });
 
             res.status(200).json(result);
 
         } catch (error) {
-            console.log("error", error)
             res.status(500).json({ message: "Something Went Wrong" });
         }
 

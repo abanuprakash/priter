@@ -25,15 +25,47 @@ const WholeStory = () => {
   };
 
   const fetchAndSetRightSideStories = async (id: number) => {
+    let childParagraphs: Story[] = [];
     await axios
-      .get(`https://priter.vercel.app/api/story/child?id=${id}`)
-      .then((response) => setRightStories(response.data));
+      // .get(`https://priter.vercel.app/api/story/child?id=${id}`)
+      .get(`http://localhost:3000/api/story/child?id=${id}`)
+      .then((response) => {
+        childParagraphs = response.data.map((child: { crtAt: string | number | Date; _count: { childParagraphs: number; }; }) => {
+          const oneDay = 60 * 60 * 24 * 1000;
+          const currentTime = Date.now();
+          const dataTime = +new Date(child.crtAt);
+          if (child._count.childParagraphs > 0) {
+            return child;
+          } else {
+            if ((currentTime - dataTime) < oneDay) {
+              return child;
+            }
+          }
+        })
+      })
+      .finally(() => setRightStories(childParagraphs.filter(story => story !== undefined)));
   };
 
   const fetchAndSetLeftSideStories = async (id: number) => {
+    let childParagraphs: Story[] = [];
     await axios
-      .get(`https://priter.vercel.app/api/story/child?id=${id}`)
-      .then((response) => setLeftSideStories(response.data));
+      // .get(`https://priter.vercel.app/api/story/child?id=${id}`)
+      .get(`http://localhost:3000/api/story/child?id=${id}`)
+      .then((response) => {
+        childParagraphs = response.data.map((child: { crtAt: string | number | Date; _count: { childParagraphs: number; }; }) => {
+          const oneDay = 60 * 60 * 24 * 1000;
+          const currentTime = Date.now();
+          const dataTime = +new Date(child.crtAt);
+          if (child._count.childParagraphs > 0) {
+            return child;
+          } else {
+            if ((currentTime - dataTime) < oneDay) {
+              return child;
+            }
+          }
+        })
+      })
+      .finally(() => setLeftSideStories(childParagraphs.filter(story => story !== undefined)));
   };
 
   return (

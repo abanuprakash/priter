@@ -31,11 +31,15 @@ const NewStoryButton = ({ isDefaultOpen, handleClose }: IProps) => {
     };
 
     await axios
-      .post(`https://priter.vercel.app/api/story/add`, newParagraph)
+      // .post(`https://priter.vercel.app/api/story/add`, newParagraph)
+      .post(`http://localhost:3000/api/story/add`, newParagraph)
       .then(async (response) => {
         const stories = await axios.get<Story[]>(
-          "https://priter.vercel.app/api/story"
+          "http://localhost:3000/api/story"
         );
+        // const stories = await axios.get<Story[]>(
+        //   "https://priter.vercel.app/api/story"
+        // );
 
         setStories(stories.data);
         handleCloseModal();
