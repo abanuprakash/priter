@@ -1,4 +1,3 @@
-import ChildStoryTile from "./childStoryTile";
 import ViewStory from "./viewStory";
 
 const FullStory = () => {

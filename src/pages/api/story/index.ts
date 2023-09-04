@@ -14,16 +14,6 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
                 // }
             });
 
-            // for (const data of result) {
-            //     const childData = await prisma.pr_story_paragraph.findMany({
-            //         where: {
-            //             parentId: data.id
-            //         }
-            //     });
-                
-            //     data.childParagraphs = childData;
-            // }
-
             res.status(200).json(result);
             
         } catch (error) {

@@ -1,6 +1,5 @@
 import { Inter } from "next/font/google";
 import axios from "axios";
-import Header from "@/components/header";
 import Body from "@/components/body";
 import { GetServerSideProps } from "next";
 import { useAppStoryContext } from "@/providers/StoryContext";

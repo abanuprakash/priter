@@ -1,8 +1,4 @@
-import Image from "next/image";
-import Link from "next/link";
-import Avatar from "../../../public/assets/images/avatar.avif";
 import ChildStoryList from "./childStoryList";
-import ChildStoryTile from "./childStoryTile";
 
 const ViewStory = () => {
   return (

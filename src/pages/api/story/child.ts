@@ -1,4 +1,3 @@
-import { Story } from "@/_types/story";
 import prisma from "@/lib/prisma";
 import { NextApiRequest, NextApiResponse } from "next";
 

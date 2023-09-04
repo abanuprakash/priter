@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Story } from "@/_types/story";
 import { useAppStoryContext } from "@/providers/StoryContext";
