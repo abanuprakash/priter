@@ -24,8 +24,8 @@ const StoryDetailsPage = ({ story }: IProps) => {
     const childParagraphs: Story[] = [];
     await stories.forEach(child => {
       axios
-        // .get(`https://priter.vercel.app/api/story/child?id=${id}`)
-        .get(`http://localhost:3000/api/story/child?id=${child.id}`)
+        .get(`https://priter.vercel.app/api/story/child?id=${child.id}`)
+        // .get(`http://localhost:3000/api/story/child?id=${child.id}`)
         .then(async (response) => {
           const oneDay = 60 * 60 * 24 * 1000;
           const currentTime = Date.now();
@@ -69,8 +69,8 @@ export default StoryDetailsPage;
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { id } = ctx.params!;
-  const response = await axios.get(`http://localhost:3000/api/story/${id}`);
-  // const response = await axios.get(`https://priter.vercel.app/api/story/${id}`);
+  // const response = await axios.get(`http://localhost:3000/api/story/${id}`);
+  const response = await axios.get(`https://priter.vercel.app/api/story/${id}`);
 
   return {
     props: {
