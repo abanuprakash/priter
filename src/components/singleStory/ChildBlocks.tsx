@@ -17,6 +17,7 @@ const ChildBlocks = ({ childStories, isLeftStories }: IStory) => {
     setRightStories,
     setShowRightSideBar,
     setShowLeftSideBar,
+    currentStory
   } = useAppStoryContext();
 
   const handleRightNewStory = async (newStory: Story) => {
@@ -42,7 +43,7 @@ const ChildBlocks = ({ childStories, isLeftStories }: IStory) => {
           const oneDay = 60 * 60 * 24 * 1000;
           const currentTime = Date.now();
           const dataTime = +new Date(child.crtAt);
-          if (child._count.childParagraphs > 0) {
+          if (child._count.childParagraphs > 0 || currentStory?.[0]?.id !== 3) {
             return child;
           } else {
             if ((currentTime - dataTime) < oneDay) {
