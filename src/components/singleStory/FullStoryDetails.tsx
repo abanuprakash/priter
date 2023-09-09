@@ -56,7 +56,8 @@ const FullStoryDetails = () => {
               <MobileBar>
                 <div className="flex flex-row items-center justify-between p-2">
                   <h2 className="p-2 pb-0 text-xl font-semibold">Follow Ups</h2>
-                  <AddStory />
+                  {(currentStory?.[0]?.id !== 3 && rightSideList.length < 3) && <AddStory />}
+                  {(currentStory?.[0]?.id === 3) && <AddStory />}
                 </div>
                 <ChildBlocks childStories={rightSideList} isLeftStories={false} />
               </MobileBar>
@@ -64,7 +65,8 @@ const FullStoryDetails = () => {
               <div className="col-span-2 bg-white relative">
                 <div className="flex flex-row items-center justify-between p-2 rounded-md">
                   <h2 className="p-2 pb-0 text-xl font-semibold">Follow Ups</h2>
-                  <AddStory />
+                  {(currentStory?.[0]?.id !== 3 && rightSideList.length < 3) && <AddStory />}
+                  {(currentStory?.[0]?.id === 3) && <AddStory />}
                 </div>
                 <ChildBlocks childStories={rightSideList} isLeftStories={false} />
               </div>
