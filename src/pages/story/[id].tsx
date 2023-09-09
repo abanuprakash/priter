@@ -2,14 +2,14 @@ import { Story } from "@/_types/story";
 import FullStoryDetails from "@/components/singleStory/FullStoryDetails";
 import { useAppStoryContext } from "@/providers/StoryContext";
 import axios from "axios";
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { useEffect, useRef } from "react";
 
 interface IProps {
   story: Story;
 }
 
-const StoryDetailsPage = ({ story }: IProps) => {
+const StoryDetailsPage = ({ story }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const { setInitialCurrentStory, setCurrentStoriesAsArray, setRightStories, setLeftSideStories } = useAppStoryContext();
   const restrict = useRef(false);
 
@@ -18,19 +18,23 @@ const StoryDetailsPage = ({ story }: IProps) => {
       handleStories();
       restrict.current = true;
     }
+    return (() => {
+      setLeftSideStories([]);
+      setRightStories([]);
+    })
   }, [story]);
 
   const getChildStories = async (stories: Story[]) => {
-    const childParagraphs: Story[] = [];
+    let childParagraphs: Story[] = [];
     await stories.forEach(child => {
       axios
-        .get(`https://priter.vercel.app/api/story/child?id=${child.id}`)
-        // .get(`http://localhost:3000/api/story/child?id=${child.id}`)
+        // .get(`https://priter.vercel.app/api/story/child?id=${child.id}`)
+        .get(`http://localhost:3000/api/story/child?id=${child.id}`)
         .then(async (response) => {
           const oneDay = 60 * 60 * 24 * 1000;
           const currentTime = Date.now();
           const dataTime = +new Date(child.crtAt);
-          if (response?.data?.length > 0) {
+          if (response?.data?.length > 0 || story.id !== 3) {
             childParagraphs.push(child)
           } else {
             if ((currentTime - dataTime) < oneDay) {
@@ -49,7 +53,7 @@ const StoryDetailsPage = ({ story }: IProps) => {
 
     if (story.id === 2) {
       newStory.push(story);
-      await story.childParagraphs.forEach(story => newStory.push(story));
+      await story?.childParagraphs?.forEach((story: Story) => newStory.push(story));
       setCurrentStoriesAsArray(newStory);
     } else {
       await setInitialCurrentStory(story);
