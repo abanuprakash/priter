@@ -46,7 +46,7 @@ const FullStoryDetails = () => {
           )}
         </>
       }
-      <div className="col-span-12 lg:col-span-8 min-h-screen h-screen bg-white">
+      <div className="col-span-12 lg:col-span-8 min-h-[calc(100vh-90px)] h-[calc(100vh-90px)] bg-white">
         <WholeStory />
       </div>
       {currentStory[0]?.id !== 2 &&

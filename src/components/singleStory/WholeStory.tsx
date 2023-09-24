@@ -69,7 +69,7 @@ const WholeStory = () => {
   };
 
   return (
-    <article className="p-4">
+    <article className="p-4 h-full overflow-hidden">
       <div className="flex flex-row items-center  mb-6 justify-between">
         <h1 className="text-2xl lg:text-5xl font-bold capitalize">{currentStory[0]?.title}</h1>
         <PreviewStory />
@@ -77,9 +77,9 @@ const WholeStory = () => {
         {(currentStory[0]?.id === 2 && currentStory.length <= 24) && <AddStory />}
       </div>
 
-      <main className="bg-lightBg p-4">
+      <main className="bg-lightBg p-4 h-[95%] overflow-y-auto ">
         {currentStory.map((story, index) => (
-          <div key={story.id} className={`flex flex-row items-center ${currentStory[0]?.id !== 2 ? 'last:text-[#ffa500]' : ''} `} title={story.crtBy}>
+          <div key={story.id} className={`flex flex-row capitalize items-center ${currentStory[0]?.id !== 2 ? 'last:text-[#ffa500]' : ''} `} title={story.crtBy}>
             <p className="mb-3">{story.paragraph}</p>
 
             {currentStory[0]?.id !== 2 && <i
