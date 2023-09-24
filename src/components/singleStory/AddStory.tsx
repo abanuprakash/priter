@@ -122,6 +122,7 @@ const AddStory = () => {
                   className="border border-green rounded-md mb-4 p-3"
                   value={newStory}
                   onChange={handleNewStory}
+                  maxLength={300}
                 ></textarea>
                 {error &&
                 <div className="text-red">{error}</div>

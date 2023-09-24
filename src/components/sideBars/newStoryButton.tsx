@@ -88,6 +88,7 @@ const NewStoryButton = ({ isDefaultOpen, handleClose }: IProps) => {
                     className="border border-green rounded-md mb-4 p-3 w-full"
                     value={newStory}
                     onChange={(event) => setNewStory(() => event.target.value)}
+                    maxLength={300}
                   ></textarea>
                 </div>
                 <button
