@@ -9,7 +9,7 @@ const RightBar = () => {
   return (
     <div className="p-4">
       <NewStoryButton handleClose={handleClose} />
-      <TopUsers />
+      {/* <TopUsers /> */}
     </div>
   );
 };

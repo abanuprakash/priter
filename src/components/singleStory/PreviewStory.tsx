@@ -1,6 +1,7 @@
 import Sheet from "react-modal-sheet";
 import { useState } from "react";
 import { useAppStoryContext } from "@/providers/StoryContext";
+import { Story } from "@/_types/story";
 
 const PreviewStory = () => {
     const [isOpen, setOpen] = useState(false);
@@ -13,20 +14,31 @@ const PreviewStory = () => {
 
     function capitalizeWord([first, ...rest]: any, lc: any) {
         return first.toUpperCase() + (lc ? rest.join("").toLowerCase() : rest.join(""));
-      }
-      const capitalize = (str: string, lc: any, all: any) => {
+    }
+    const capitalize = (str: string, lc: any, all: any) => {
         return all ? str.split(/(\s|-|')/)
-          .map(s => capitalizeWord(s, lc))
-          .join("")
-          : capitalizeWord(str, lc);
-      }
+            .map(s => capitalizeWord(s, lc))
+            .join("")
+            : capitalizeWord(str, lc);
+    }
+
+    const stringsPerLine = 5;
+    const modifiedArray: any[] = [];
+
+    for (let i = 0; i < currentStory.length; i++) {
+        modifiedArray.push(currentStory[i]);
+
+        if ((i + 1) % stringsPerLine === 0) {
+            modifiedArray.push("\n");
+        }
+    }
 
     return (
         <>
             <button
                 onClick={() => setOpen(true)}
                 className="bg-green text-white w-10 h-10 rounded-full flex flex-col justify-center items-center"
-                
+
             >
                 <i
                     className={`icon-file-text feather text-2xl font-bold cursor-pointer `}
@@ -55,14 +67,21 @@ const PreviewStory = () => {
                                     {currentStory[0]?.title}
                                 </h2>
                                 <div className="bg-bodyBg p-2 ">
-                                    {currentStory.map((story) => (
-                                        <span
-                                            key={story.id}
-                                            className=""
-                                            title={story.crtBy}
-                                        >
-                                            <span className="mb-2 ml-2">{story.paragraph}</span>
-                                        </span>
+                                    {modifiedArray.map((story, index) => (
+                                        <>
+                                            {(typeof story === 'string')
+                                                ? <div className="mb-4"></div>
+                                                :
+                                                <span
+                                                    key={story.id}
+                                                    className=""
+                                                    title={story.crtBy}
+                                                >
+                                                    <span className="mb-2">{story.paragraph}</span>
+                                                </span>
+                                            }
+                                        </>
+
                                     ))}
                                 </div>
                             </div>

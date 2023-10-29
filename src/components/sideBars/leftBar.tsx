@@ -14,7 +14,8 @@ const LeftBar = () => {
             active === menu.key
               ? "bg-lightGreen text-darkGreen"
               : "text-lightBlack"
-          }`}
+          } ${menu.isEnabled ? '' : 'pointer-events-none'}
+          `}
           onClick={() => setActive(menu.key)}
         >
           <span

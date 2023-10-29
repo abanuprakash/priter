@@ -19,7 +19,7 @@ const BottomFixedMenu = () => {
               key={menu.id}
               className={`flex items-center outline-none justify-center cursor-pointer relative group mb-2 rounded-full p-1 w-11 h-11 hover:bg-lightGreen  ${
                 active === menu.key ? "bg-lightGreen" : "text-lightBlack"
-              }`}
+              } ${menu.isEnabled ? '' : 'pointer-events-none'}`}
               onClick={() => setActive(menu.key)}
             >
               <i className={`${menu.icon} feather mr-3 text-2xl pl-3 `}></i>
