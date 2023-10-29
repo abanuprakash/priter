@@ -28,8 +28,8 @@ const StoryDetailsPage = ({ story }: InferGetServerSidePropsType<typeof getServe
     let childParagraphs: Story[] = [];
     await stories.forEach(child => {
       axios
-        // .get(`https://priter.vercel.app/api/story/child?id=${child.id}`)
-        .get(`http://localhost:3000/api/story/child?id=${child.id}`)
+        .get(`https://priter.vercel.app/api/story/child?id=${child.id}`)
+        // .get(`http://localhost:3000/api/story/child?id=${child.id}`)
         .then(async (response) => {
           const oneDay = 60 * 60 * 24 * 1000;
           const currentTime = Date.now();
