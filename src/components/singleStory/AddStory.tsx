@@ -97,7 +97,7 @@ const AddStory = () => {
             </div>
           </Sheet.Header>
           <Sheet.Content>
-            <div className="flex flex-col lg:flex-row items-start p-8">
+            <div className="flex flex-col lg:flex-row items-start p-8 h-full overflow-y-auto">
               <div className="w-full lg:w-1/2 mb-4 lg:mb-0 lg:mr-4">
                 <h2 className="text-2xl font-medium mb-4 underline">
                   Story Till Now
