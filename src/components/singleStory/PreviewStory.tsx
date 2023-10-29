@@ -11,6 +11,16 @@ const PreviewStory = () => {
         setOpen(false);
     };
 
+    function capitalizeWord([first, ...rest]: any, lc: any) {
+        return first.toUpperCase() + (lc ? rest.join("").toLowerCase() : rest.join(""));
+      }
+      const capitalize = (str: string, lc: any, all: any) => {
+        return all ? str.split(/(\s|-|')/)
+          .map(s => capitalizeWord(s, lc))
+          .join("")
+          : capitalizeWord(str, lc);
+      }
+
     return (
         <>
             <button
