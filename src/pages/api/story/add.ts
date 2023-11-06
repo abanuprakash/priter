@@ -26,7 +26,8 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
             req.body.userImage = '';
         }
 
-        if (req.body.lastAuthor === req.body.crtBy && req.body.parentId === 2) {
+        if (req.body.lastAuthor === req.body.crtBy) {
+        // if (req.body.lastAuthor === req.body.crtBy && req.body.parentId === 2) {
             res.status(417).json({ message: "ooh hoo Sorry! You can't put consecutive entries" });
             res.end();
         } else {
