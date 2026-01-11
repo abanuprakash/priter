@@ -1,6 +1,6 @@
 import { Html, Head, Main, NextScript } from 'next/document'
 
-export default function Document() {
+export default function Document(props) {
   return (
     <Html lang="en">
       <Head>
@@ -9,6 +9,7 @@ export default function Document() {
           href="https://fonts.gstatic.com"
           crossOrigin=""
         />
+        <link rel="icon" href="/favicon.ico" />
         <link
           rel="preload"
           as="style"

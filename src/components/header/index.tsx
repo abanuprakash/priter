@@ -24,11 +24,11 @@ const Header = () => {
       className={`bg-white w-full z-20 shadow-lg h-14 lg:h-16 fixed top-0`}
     >
       <section className={`flex w-100 items-center justify-between py-2 px-4 lg:px-24`}>
-        {/* <Image
+         <Image
           src={Logo}
           alt="logo"
-          className="inline-block w-36 h-9 cursor-pointer"
-        /> */}
+          className="inline-block w-36 h-12 cursor-pointer"
+        /> 
         <div></div>
 
         {session
